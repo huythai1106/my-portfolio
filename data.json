@@ -10,7 +10,7 @@
         "statusPill": "Available for Unity projects",
         "name": "Chu Huy Thai",
         "leadText": "Unity Game Developer specializing in 3D/2D gameplay systems, technical optimization, and high-performance algorithms. Dedicated to zero-allocation architecture, clean OOP patterns, and solving complex simulation bottlenecks to ship seamless cross-platform experiences.",
-        "avatarImg": "Imgs/Avatar.png",
+        "avatarImg": "Image/Avatar.png",
         "floatingNote": "Open to projects",
         "stats": [
             {
@@ -33,7 +33,7 @@
         "description": "A selection of game projects and prototypes built through professional work, self-study, and consistent Unity practice.",
         "projects": [
             {
-                "img": "Imgs/BattleShip.png",
+                "img": "Image/BattleShip.png",
                 "imgAlt": "Battle Ship online",
                 "tags": [
                     "Python",
@@ -46,7 +46,7 @@
                 "link": "#contact"
             },
             {
-                "img": "Imgs/gameJamicon.PNG",
+                "img": "Image/gameJamicon.PNG",
                 "imgAlt": "Game Jam 2026 project",
                 "tags": [
                     "Unity",
@@ -58,7 +58,7 @@
                 "link": "#contact"
             },
             {
-                "img": "Imgs/2Player.png",
+                "img": "Image/2Player.png",
                 "imgAlt": "2 Player project",
                 "tags": [
                     "Unity",
@@ -70,7 +70,7 @@
                 "link": "#contact"
             },
             {
-                "img": "Imgs/voxel.png",
+                "img": "Image/voxel.png",
                 "imgAlt": "Voxel shooter project",
                 "tags": [
                     "Unity 3D",
@@ -85,7 +85,7 @@
         ]
     },
     "about": {
-        "photoImg": "Imgs/Avatar.png",
+        "photoImg": "Image/Avatar.png",
         "kicker": "About me",
         "title": "A bit about who I am",
         "paragraphs": [
@@ -152,21 +152,21 @@
         "description": "A few technical topics for expanding the portfolio with practical development notes.",
         "list": [
             {
-                "img": "Imgs/UnityImg.png",
+                "img": "Image/UnityImg.png",
                 "meta": "Unity - 2026",
                 "title": "How to organize Unity scenes for small 2D games",
                 "description": "Notes on splitting prefabs, scripts, and folders so projects stay easier to scale.",
                 "link": "#contact"
             },
             {
-                "img": "Imgs/Csharp.png",
+                "img": "Image/Csharp.png",
                 "meta": "C# - 2026",
                 "title": "Applying OOP to basic gameplay systems",
                 "description": "Principles that keep character, enemy, and item scripts cleaner.",
                 "link": "#contact"
             },
             {
-                "img": "Imgs/gameJamicon.PNG",
+                "img": "Image/gameJamicon.PNG",
                 "meta": "Game Jam - 2026",
                 "title": "Lessons from building prototypes under time pressure",
                 "description": "How to prioritize core gameplay, test quickly, and finish a playable demo.",
