@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" id="metaDescription" />
+    <title>Loading Portfolio...</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <style>
+        /* =========================
+       COLORS AND GLOBAL SETTINGS
+       ========================= */
+        :root {
+            --bg: #f7f9fc;
+            --surface: #ffffff;
+            --surface-2: #eef4ff;
+            --ink: #111827;
+            --muted: #64748b;
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --accent-light: #dbeafe;
+            --border: #e2e8f0;
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg: #0b0f19;
+            --surface: #111827;
+            --surface-2: #1f2937;
+            --ink: #f9fafb;
+            --muted: #9ca3af;
+            --accent: #3b82f6;
+            --accent-hover: #60a5fa;
+            --accent-light: #1e3a8a;
+            --border: #374151;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: 'Inter', sans-serif;
+            color: var(--ink);
+            background-color: var(--bg);
+            transition: background-color 0.3s ease;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            color: #ffffff;
+        }
+
+        .btn-accent:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-dark {
+            background-color: var(--ink);
+            color: var(--surface);
+        }
+
+        .btn-dark:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .btn-light {
+            background-color: var(--surface);
+            color: var(--ink);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-light:hover {
+            background-color: var(--bg);
+            transform: translateY(-2px);
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--ink);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .icon-btn:hover {
+            background-color: var(--border);
+        }
+
+        .text-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .text-link:hover i {
+            transform: translateX(4px);
+        }
+
+        .text-link i {
+            transition: var(--transition);
+        }
+
+        /* HEADER & NAV */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(247, 249, 2fc, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid transparent;
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] .site-header {
+            background-color: rgba(11, 15, 25, 0.8);
+        }
+
+        .site-header.scrolled {
+            background-color: var(--surface);
+            border-bottom: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .brand {
+            font-size: 22px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .brand span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 15px;
+            color: var(--muted);
+        }
+
+        .nav-links a:hover {
+            color: var(--ink);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 160px 0 100px 0;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--accent-light);
+            color: var(--accent);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .pill .dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(37, 99, 235, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero-lead {
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--muted);
+            margin-bottom: 40px;
+            max-width: 540px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            border-top: 1px solid var(--border);
+            padding-top: 32px;
+        }
+
+        .stat-card .stat-number {
+            display: block;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--ink);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .stat-card p {
+            font-size: 14px;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        .portrait-card {
+            position: relative;
+        }
+
+        .portrait-card img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            background-color: var(--border);
+            aspect-ratio: 4/5;
+            object-fit: cover;
+        }
+
+        .floating-note {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            background-color: var(--surface);
+            padding: 12px 20px;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-lg);
+            font-weight: 600;
+            font-size: 14px;
+            border-left: 4px solid var(--accent);
+        }
+
+        /* SECTION COMMON HEADINGS */
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 64px;
+            gap: 32px;
+        }
+
+        .section-heading div {
+            max-width: 600px;
+        }
+
+        .section-heading p {
+            max-width: 450px;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .section-kicker {
+            display: block;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .section h2 {
+            font-size: 36px;
+            letter-spacing: -0.5px;
+        }
+
+        /* WORK SECTION */
+        .work {
+            background-color: var(--surface);
+        }
+
+        [data-theme="dark"] .work {
+            background-color: #0e1420;
+        }
+
+        .work-list {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .project-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background-color: var(--bg);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        [data-theme="dark"] .project-card {
+            background-color: var(--surface);
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent);
+        }
+
+        .project-media {
+            position: relative;
+            overflow: hidden;
+            background-color: var(--border);
+        }
+
+        .project-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-media img {
+            transform: scale(1.03);
+        }
+
+        .project-content {
+            padding: 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--muted);
+        }
+
+        [data-theme="dark"] .tag {
+            background-color: var(--surface-2);
+        }
+
+        .project-content h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .project-content p {
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        /* ABOUT SECTION */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .about-photo img {
+            width: 100%;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow);
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+
+        .about-copy h2 {
+            margin-bottom: 24px;
+        }
+
+        .about-copy p {
+            color: var(--muted);
+            line-height: 1.6;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .stack-wrap {
+            margin-top: 32px;
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+        }
+
+        .stack-wrap h3 {
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
+
+        .stack-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .stack-list span {
+            background-color: var(--surface-2);
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 64px;
+        }
+
+        .skill-card {
+            background-color: var(--surface);
+            padding: 32px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .skill-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+        }
+
+        .skill-card i {
+            font-size: 32px;
+            color: var(--accent);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .skill-card h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .skill-card p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* REVIEWS SECTION */
+        .proof {
+            background-color: var(--surface);
+        }
+
+        [data-theme="dark"] .proof {
+            background-color: #0e1420;
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .review-card {
+            background-color: var(--bg);
+            padding: 32px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        [data-theme="dark"] .review-card {
+            background-color: var(--surface);
+        }
+
+        .review-card p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--ink);
+            font-style: italic;
+            margin-bottom: 24px;
+        }
+
+        .review-person {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .review-person img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: var(--border);
+        }
+
+        .review-person strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .review-person span {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        /* BLOG SECTION */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .blog-card {
+            background-color: var(--surface);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            padding: 16px;
+            transition: var(--transition);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent);
+        }
+
+        .blog-card img {
+            width: 100%;
+            aspect-ratio: 16/10;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+            margin-bottom: 16px;
+            background-color: var(--border);
+        }
+
+        .blog-meta {
+            font-size: 12px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .blog-card h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .blog-card p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* CONTACT SECTION */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 64px;
+            align-items: start;
+        }
+
+        .contact-copy h2 {
+            margin-bottom: 20px;
+        }
+
+        .contact-copy p {
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .contact-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .contact-list li {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 16px;
+        }
+
+        .contact-list i {
+            width: 40px;
+            height: 40px;
+            background-color: var(--surface-2);
+            color: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .contact-list a:hover {
+            color: var(--accent);
+        }
+
+        .contact-form {
+            background-color: var(--surface);
+            padding: 40px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .form-row {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .form-row label {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .form-row input, .form-row textarea {
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            background-color: var(--bg);
+            color: var(--ink);
+            font-family: inherit;
+            font-size: 15px;
+            transition: var(--transition);
+        }
+
+        .form-row input:focus, .form-row textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background-color: var(--surface);
+            box-shadow: 0 0 0 3px var(--accent-light);
+        }
+
+        .form-row textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-message {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 16px;
+            color: var(--accent);
+        }
+
+        /* FOOTER */
+        .footer {
+            background-color: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 40px 0;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer p {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-links i {
+            font-size: 18px;
+            color: var(--muted);
+            transition: var(--transition);
+        }
+
+        .footer-links i:hover {
+            color: var(--ink);
+        }
+
+        /* REVEAL ANIMATION */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 992px) {
+            .hero-grid, .about-grid, .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .portrait-card {
+                max-width: 450px;
+                margin: 0 auto;
+            }
+
+            .section-heading {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .project-card {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid, .review-grid, .blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--surface);
+                flex-direction: column;
+                padding: 24px;
+                gap: 16px;
+                border-bottom: 1px solid var(--border);
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .skills-grid, .review-grid, .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-content {
+                padding: 24px;
+            }
+
+            .contact-form {
+                padding: 24px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header" id="siteHeader">
+        <nav class="nav container" aria-label="Main menu">
+            <a class="brand" href="#home" aria-label="Back to top" id="brandName"></a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#work">Work</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a class="btn btn-dark" href="#contact">Hire me</a>
+                <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button class="icon-btn menu-toggle" id="menuToggle" type="button" aria-label="Open menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <span class="pill"><span class="dot"></span> <span id="heroStatusPill"></span></span>
+                    <h1 id="heroGreeting"></h1>
+                    <p class="hero-lead" id="heroLeadText"></p>
+
+                    <div class="hero-actions">
+                        <a class="btn btn-accent" href="#work">View my work <i class="fa-solid fa-arrow-right"></i></a>
+                        <a class="btn btn-light" href="#contact">Get in touch</a>
+                    </div>
+
+                    <div class="hero-stats" id="stats">
+                        </div>
+                </div>
+
+                <div class="portrait-card">
+                    <img id="heroAvatarImg" src="" alt="" />
+                    <div class="floating-note" id="heroFloatingNote"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section work" id="work">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <div>
+                        <span class="section-kicker" id="workKicker"></span>
+                        <h2 id="workTitle"></h2>
+                    </div>
+                    <p id="workDescription"></p>
+                </div>
+
+                <div class="work-list" id="projectList">
+                    </div>
+            </div>
+        </section>
+
+        <section class="section" id="about">
+            <div class="container about-grid">
+                <div class="about-photo reveal">
+                    <img id="aboutPhotoImg" src="" alt="" />
+                </div>
+
+                <div class="about-copy reveal">
+                    <span class="section-kicker" id="aboutKicker"></span>
+                    <h2 id="aboutTitle"></h2>
+                    <div id="aboutParagraphs"></div>
+
+                    <div class="stack-wrap" id="skills">
+                        <h3>Stack & tools</h3>
+                        <div class="stack-list" id="aboutSkillsList"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container skills-grid" id="aboutSkillCardsGrid">
+                </div>
+        </section>
+
+        <section class="section proof" id="reviews">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <div>
+                        <span class="section-kicker" id="reviewsKicker"></span>
+                        <h2 id="reviewsTitle"></h2>
+                    </div>
+                    <p id="reviewsDescription"></p>
+                </div>
+
+                <div class="review-grid" id="reviewsGrid">
+                    </div>
+            </div>
+        </section>
+
+        <section class="section blog" id="blog">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <div>
+                        <span class="section-kicker" id="blogKicker"></span>
+                        <h2 id="blogTitle"></h2>
+                    </div>
+                    <p id="blogDescription"></p>
+                </div>
+
+                <div class="blog-grid" id="blogGrid">
+                    </div>
+            </div>
+        </section>
+
+        <section class="section" id="contact">
+            <div class="container contact-grid">
+                <div class="contact-copy reveal">
+                    <span class="section-kicker" id="contactKicker"></span>
+                    <h2 id="contactTitle"></h2>
+                    <p id="contactDescription"></p>
+
+                    <ul class="contact-list" id="contactList">
+                        </ul>
+                </div>
+
+                <form class="contact-form reveal" id="contactForm">
+                    <div class="form-row">
+                        <label for="name">Name *</label>
+                        <input id="name" name="name" type="text" placeholder="Enter your name" required />
+                    </div>
+                    <div class="form-row">
+                        <label for="email">Email *</label>
+                        <input id="email" name="email" type="email" placeholder="email@example.com" required />
+                    </div>
+                    <div class="form-row">
+                        <label for="phone">Phone</label>
+                        <input id="phone" name="phone" type="tel" placeholder="0xxx xxx xxx" />
+                    </div>
+                    <div class="form-row">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" placeholder="What would you like to discuss?" required></textarea>
+                    </div>
+                    <p class="form-message" id="formMessage" aria-live="polite"></p>
+                    <button class="btn btn-accent" type="submit">Send message <i class="fa-solid fa-arrow-right"></i></button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p>© <span id="currentYear"></span> <span id="footerCopyrightName"></span>. All rights reserved.</p>
+            <div class="footer-links" id="footerLinks">
+                </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- 1. ĐỌC VÀ ĐỔ DỮ LIỆU TỪ FILE JSON TỰ ĐỘNG ---
+        fetch('data.json')
+            .then(response => {
+                if (!response.ok) throw new Error("Không thể tải file data.json");
+                return response.json();
+            })
+            .then(data => {
+                // Meta & Title
+                document.title = data.meta.title;
+                document.getElementById('metaDescription').setAttribute('content', data.meta.description);
+
+                // Header
+                document.getElementById('brandName').innerHTML = `${data.header.brandName}<span>.</span>`;
+
+                // Hero
+                document.getElementById('heroStatusPill').textContent = data.hero.statusPill;
+                document.getElementById('heroGreeting').innerHTML = `Hi, I'm <span>${data.hero.name}</span>`;
+                document.getElementById('heroLeadText').textContent = data.hero.leadText;
+                document.getElementById('heroFloatingNote').textContent = data.hero.floatingNote;
+                
+                const avatarImg = document.getElementById('heroAvatarImg');
+                avatarImg.src = data.hero.avatarImg;
+                avatarImg.alt = `Portrait of ${data.hero.name}`;
+
+                // Hero Stats
+                const statsContainer = document.getElementById('stats');
+                statsContainer.innerHTML = data.hero.stats.map(stat => `
+                    <div class="stat-card">
+                        <span class="stat-number" data-target="${stat.target}">0</span>
+                        <p>${stat.label}</p>
+                    </div>
+                `).join('');
+
+                // Work
+                document.getElementById('workKicker').textContent = data.work.kicker;
+                document.getElementById('workTitle').textContent = data.work.title;
+                document.getElementById('workDescription').textContent = data.work.description;
+
+                const projectList = document.getElementById('projectList');
+                projectList.innerHTML = data.work.projects.map(proj => `
+                    <article class="project-card reveal">
+                        <div class="project-media">
+                            <img src="${proj.img}" alt="${proj.imgAlt}" />
+                        </div>
+                        <div class="project-content">
+                            <div class="tag-row">
+                                ${proj.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                            </div>
+                            <h3>${proj.title}</h3>
+                            <p>${proj.description}</p>
+                            <a class="text-link" href="${proj.link}">View case study <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                `).join('');
+
+                // About
+                const aboutPhoto = document.getElementById('aboutPhotoImg');
+                aboutPhoto.src = data.about.photoImg;
+                aboutPhoto.alt = `Photo of ${data.hero.name}`;
+
+                document.getElementById('aboutKicker').textContent = data.about.kicker;
+                document.getElementById('aboutTitle').textContent = data.about.title;
+                document.getElementById('aboutParagraphs').innerHTML = data.about.paragraphs.map(p => `<p>${p}</p>`).join('');
+                document.getElementById('aboutSkillsList').innerHTML = data.about.skills.map(s => `<span>${s}</span>`).join('');
+
+                const skillCardsGrid = document.getElementById('aboutSkillCardsGrid');
+                skillCardsGrid.innerHTML = data.about.skillCards.map(card => `
+                    <article class="skill-card reveal">
+                        <i class="${card.iconClass}"></i>
+                        <h3>${card.title}</h3>
+                        <p>${card.description}</p>
+                    </article>
+                `).join('');
+
+                // Reviews
+                document.getElementById('reviewsKicker').textContent = data.reviews.kicker;
+                document.getElementById('reviewsTitle').textContent = data.reviews.title;
+                document.getElementById('reviewsDescription').textContent = data.reviews.description;
+
+                const reviewsGrid = document.getElementById('reviewsGrid');
+                reviewsGrid.innerHTML = data.reviews.list.map(rev => `
+                    <article class="review-card reveal">
+                        <p>"${rev.quote}"</p>
+                        <div class="review-person">
+                            <img src="${rev.avatar}" alt="${rev.name} avatar" />
+                            <div><strong>${rev.name}</strong><span>${rev.role}</span></div>
+                        </div>
+                    </article>
+                `).join('');
+
+                // Blog
+                document.getElementById('blogKicker').textContent = data.blog.kicker;
+                document.getElementById('blogTitle').textContent = data.blog.title;
+                document.getElementById('blogDescription').textContent = data.blog.description;
+
+                const blogGrid = document.getElementById('blogGrid');
+                blogGrid.innerHTML = data.blog.list.map(post => `
+                    <article class="blog-card reveal">
+                        <img src="${post.img}" alt="${post.title}" />
+                        <div class="blog-meta">${post.meta}</div>
+                        <h3>${post.title}</h3>
+                        <p>${post.description}</p>
+                        <a class="text-link" href="${post.link}">Read more <i class="fa-solid fa-arrow-right"></i></a>
+                    </article>
+                `).join('');
+
+                // Contact
+                document.getElementById('contactKicker').textContent = data.contact.kicker;
+                document.getElementById('contactTitle').textContent = data.contact.title;
+                document.getElementById('contactDescription').textContent = data.contact.description;
+
+                const contactList = document.getElementById('contactList');
+                contactList.innerHTML = `
+                    <li><a href="mailto:${data.contact.email}"><i class="fa-solid fa-envelope"></i> ${data.contact.email}</a></li>
+                    <li><a href="tel:${data.contact.phoneHref}"><i class="fa-solid fa-phone"></i> ${data.contact.phoneLabel}</a></li>
+                    <li><i class="fa-solid fa-location-dot"></i> ${data.contact.location}</li>
+                    <li><a href="${data.contact.githubHref}" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> ${data.contact.githubLabel}</a></li>
+                `;
+
+                // Footer
+                document.getElementById('footerCopyrightName').textContent = data.footer.copyrightName;
+                document.getElementById('footerLinks').innerHTML = `
+                    <a href="mailto:${data.contact.email}" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="${data.contact.githubHref}" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                `;
+
+                // Kích hoạt lại các hiệu ứng Animation/Counter sau khi dữ liệu đã sẵn sàng
+                initEffects();
+            })
+            .catch(err => {
+                console.error("Lỗi khi load portfolio: ", err);
+                document.title = "Error Loading Portfolio";
+            });
+
+        // --- 2. TOÀN BỘ LOGIC HIỆU ỨNG GIAO DIỆN (GIỮ NGUYÊN BẢN GIÚP BẠN) ---
+        function initEffects() {
+            const themeToggle = document.getElementById("themeToggle");
+            const menuToggle = document.getElementById("menuToggle");
+            const navLinks = document.getElementById("navLinks");
+            const siteHeader = document.getElementById("siteHeader");
+            const contactForm = document.getElementById("contactForm");
+            const formMessage = document.getElementById("formMessage");
+
+            // Set current year
+            document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+            // Dark Mode Toggle
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme === "dark") {
+                document.documentElement.setAttribute("data-theme", "dark");
+                themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            }
+
+            themeToggle.addEventListener("click", () => {
+                const currentTheme = document.documentElement.getAttribute("data-theme");
+                if (currentTheme === "dark") {
+                    document.documentElement.removeAttribute("data-theme");
+                    themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+                    localStorage.setItem("theme", "light");
+                } else {
+                    document.documentElement.setAttribute("data-theme", "dark");
+                    themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+                    localStorage.setItem("theme", "dark");
+                }
+            });
+
+            // Mobile Navigation Menu Toggle
+            menuToggle.addEventListener("click", () => {
+                navLinks.classList.toggle("open");
+                const isOpen = navLinks.classList.contains("open");
+                menuToggle.innerHTML = isOpen ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+            });
+
+            // Close mobile menu on link click
+            navLinks.querySelectorAll("a").forEach(link => {
+                link.addEventListener("click", () => {
+                    navLinks.classList.remove("open");
+                    menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+                });
+            });
+
+            // Header Scroll Styling
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > 50) {
+                    siteHeader.classList.add("scrolled");
+                } else {
+                    siteHeader.classList.remove("scrolled");
+                }
+            });
+
+            // Intersection Observer for Reveal Elements
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+
+            // Numbers Counter Animation
+            let countersStarted = false;
+            function runCounters() {
+                document.querySelectorAll(".stat-number").forEach(counter => {
+                    const target = +counter.getAttribute("data-target");
+                    const duration = 1000;
+                    const startTime = performance.now();
+
+                    function update(now) {
+                        const progress = Math.min((now - startTime) / duration, 1);
+                        const value = Math.floor(progress * target);
+                        counter.textContent = value + (target > 1 ? "+" : "");
+
+                        if (progress < 1) {
+                            requestAnimationFrame(update);
+                        } else {
+                            counter.textContent = target + (target > 1 ? "+" : "");
+                        }
+                    }
+                    requestAnimationFrame(update);
+                });
+            }
+
+            const statsObserver = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting && !countersStarted) {
+                    countersStarted = true;
+                    runCounters();
+                    statsObserver.disconnect();
+                }
+            }, { threshold: 0.5 });
+
+            const statsElem = document.getElementById("stats");
+            if(statsElem) statsObserver.observe(statsElem);
+
+            // Contact Form Handle
+            if(contactForm) {
+                contactForm.addEventListener("submit", (event) => {
+                    event.preventDefault();
+                    formMessage.textContent = "Sending...";
+                    setTimeout(() => {
+                        formMessage.textContent = "Message sent successfully. Thank you for reaching out.";
+                        contactForm.reset();
+                    }, 1100);
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>
